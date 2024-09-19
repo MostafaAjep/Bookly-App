@@ -1,3 +1,4 @@
+import 'package:bokkly_app/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatelessWidget {
@@ -5,9 +6,13 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(),
+        child: Image.asset(
+          AssetsData.logo,
+          width: 200,
+          height: 200,
+        ),
       ),
     );
   }
