@@ -1,3 +1,5 @@
+import 'package:bokkly_app/Features/home/presentation/views/widgets/custom_app_bar.dart';
+import 'package:bokkly_app/Features/home/presentation/views/widgets/custom_list_view_item.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -6,33 +8,11 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
-      children: [CustomAppBar()],
-    );
-  }
-}
-
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-      child: Row(
-        children: [
-          Image.asset(
-            'assets/images/Logo.png',
-            width: 80,
-            height: 16,
-          ),
-          const Spacer(),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
-            splashRadius: 18,
-          ),
-        ],
-      ),
+      children: [
+        CustomAppBar(),
+        Spacer(),
+        CustomListViewItem(),
+      ],
     );
   }
 }
