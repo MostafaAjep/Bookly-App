@@ -1,4 +1,4 @@
-import 'package:bokkly_app/Features/home/presentation/views/widgets/custom_list_view_item.dart';
+import 'package:bokkly_app/Features/home/presentation/views/widgets/custom_book_item.dart';
 import 'package:flutter/material.dart';
 
 class BooksListView extends StatelessWidget {
@@ -14,7 +14,7 @@ class BooksListView extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: 10,
         itemBuilder: (context, index) {
-          return const CustomListViewItem();
+          return const CustomBookImage();
         },
       ),
     );
