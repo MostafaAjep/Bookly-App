@@ -1,7 +1,8 @@
-import 'package:bokkly_app/Features/home/presentation/views/home_view.dart';
 import 'package:bokkly_app/Features/splash/presentation/views/widgets/sliding_text.dart';
+import 'package:bokkly_app/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:bokkly_app/core/utils/assets.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({
@@ -27,22 +28,25 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 3), () {
       // ignore: use_build_context_synchronously
-      Navigator.of(context).push(_createRoute());
+      // Navigator.of(context).push(_createRoute());
+      // ignore: use_build_context_synchronously
+      GoRouter.of(context).push(AppRouter.kHomeView);
     });
   }
 
-  Route _createRoute() {
-    return PageRouteBuilder(
-      transitionDuration: const Duration(milliseconds: 700),
-      pageBuilder: (context, animation, secondaryAnimation) => const HomeView(),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        return FadeTransition(
-          opacity: animation,
-          child: child,
-        );
-      },
-    );
-  }
+  // an old way to use it with navigator
+  // Route _createRoute() {
+  //   return PageRouteBuilder(
+  //     transitionDuration: const Duration(milliseconds: 700),
+  //     pageBuilder: (context, animation, secondaryAnimation) => const HomeView(),
+  //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+  //       return FadeTransition(
+  //         opacity: animation,
+  //         child: child,
+  //       );
+  //     },
+  //   );
+  // }
 
   void initSlidingAnimation() {
     animationController = AnimationController(
