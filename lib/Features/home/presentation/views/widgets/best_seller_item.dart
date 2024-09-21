@@ -9,7 +9,7 @@ class BestSellerListViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 18),
+      padding: const EdgeInsets.only(left: 18, right: 18, bottom: 12),
       child: SizedBox(
         height: 120,
         child: Row(
@@ -57,14 +57,14 @@ class BestSellerListViewItem extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.17,
+                        width: MediaQuery.of(context).size.width * 0.145,
                       ),
                       const BookRating(),
                     ],
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
