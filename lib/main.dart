@@ -16,12 +16,22 @@ void main() {
 class BooklyApp extends StatelessWidget {
   const BooklyApp({super.key});
 
+  // alternatively we can use getIt
+  // late ApiService apiService;
+  // late HomeRepoImpl homeRepoImpl;
+  //  BooklyApp({super.key}){
+  //   homeRepoImpl = HomeRepoImpl(apiService);
+  //   apiService = ApiService(Dio());
+  // }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => FeaturedBooksCubit(
+            // alternative way to get it
+            // homeRepoImpl,
             getIt.get<HomeRepoImpl>(),
           ),
         ),
