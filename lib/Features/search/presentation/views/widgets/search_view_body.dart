@@ -1,5 +1,7 @@
+import 'package:bokkly_app/Features/home/data/models/book_model/book_model.dart';
 import 'package:bokkly_app/Features/home/presentation/views/widgets/best_seller_item.dart';
 import 'package:bokkly_app/Features/search/presentation/views/widgets/custom_search_field.dart';
+import 'package:bokkly_app/core/utils/assets.dart';
 import 'package:bokkly_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +37,10 @@ class SearchResultListView extends StatelessWidget {
       child: ListView.builder(
         //the list view has a default padding of 16 so we need to set it to 0
         padding: EdgeInsets.zero,
-        itemBuilder: (ctx, index) => const BestSellerListViewItem(),
+        itemBuilder: (ctx, index) => const BestSellerListViewItem(
+          // TODO: add book model
+          bookModel: BookModel(),
+        ),
         itemCount: 10,
         //shrinkWrap makes the list view build all of it's children at the first time
         // that s naturally bad to perform when you have a large list

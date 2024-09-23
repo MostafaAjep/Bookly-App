@@ -1,12 +1,14 @@
+import 'package:bokkly_app/Features/home/data/models/book_model/book_model.dart';
 import 'package:bokkly_app/Features/home/presentation/views/widgets/book_rating.dart';
 import 'package:bokkly_app/core/utils/app_router.dart';
-import 'package:bokkly_app/core/utils/assets.dart';
 import 'package:bokkly_app/core/utils/styles.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+  const BestSellerListViewItem({super.key, required this.bookModel});
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +24,21 @@ class BestSellerListViewItem extends StatelessWidget {
             children: [
               AspectRatio(
                 aspectRatio: 2.8 / 4,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    // todo
-                    color: Colors.red,
-                    image: const DecorationImage(
-                      image: AssetImage(AssetsData.testImage),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          bookModel.volumeInfo?.imageLinks?.thumbnail ?? '',
+                      fit: BoxFit.fill,
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                      placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     ),
                   ),
                 ),
@@ -40,8 +50,8 @@ class BestSellerListViewItem extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.5,
-                      child: const Text(
-                        'Harry Potter and the Goblet of Fire',
+                      child: Text(
+                        bookModel.volumeInfo?.title ?? 'title not found',
                         style: Styles.textStyle20,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -50,14 +60,18 @@ class BestSellerListViewItem extends StatelessWidget {
                     const SizedBox(
                       height: 3,
                     ),
-                    const Text('J.K Rowling', style: Styles.textStyle14),
+                    Text(
+                      bookModel.volumeInfo?.authors?.first ??
+                          'author not found',
+                      style: Styles.textStyle14,
+                    ),
                     const SizedBox(
                       height: 3,
                     ),
                     Row(
                       children: [
                         Text(
-                          '\$19.99',
+                          "${bookModel.volumeInfo?.pageCount.toString()}\$",
                           style: Styles.textStyle20.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
