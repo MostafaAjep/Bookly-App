@@ -17,15 +17,15 @@ class HomeRepoImpl implements HomeRepo {
       List<BookModel> books = [];
       for (var item in data['items']) {
         books.add(BookModel.fromJson(item));
-        return Right(books);
+        print(books.length);
       }
+      return Right(books);
     } catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));
       }
       return left(ServerFailure(errorMessage: e.toString()));
     }
-    throw UnimplementedError();
   }
 
   @override

@@ -33,7 +33,8 @@ class BooklyApp extends StatelessWidget {
             // alternative way to get it
             // homeRepoImpl,
             getIt.get<HomeRepoImpl>(),
-          ),
+            //that means when we create the cubit it will fetch the data from the repo
+          )..fetchFeaturedBooks(),
         ),
         BlocProvider(
           create: (context) => NewestBooksCubit(

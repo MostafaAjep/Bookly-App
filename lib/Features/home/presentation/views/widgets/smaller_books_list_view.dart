@@ -14,7 +14,10 @@ class SmallerBooksListView extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: 10,
         itemBuilder: (context, index) {
-          return const CustomBookImage();
+          return const CustomBookImage(
+            imageUrl:
+                'https://books.google.com/books/content?id=jKBQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+          );
         },
       ),
     );
