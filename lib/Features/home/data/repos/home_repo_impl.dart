@@ -3,7 +3,7 @@ import 'package:bokkly_app/Features/home/data/repos/home_repo.dart';
 import 'package:bokkly_app/core/errors/failures.dart';
 import 'package:bokkly_app/core/utils/api_service.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final ApiService apiService;
@@ -26,9 +26,11 @@ class HomeRepoImpl implements HomeRepo {
         return Right(books);
       }
     } catch (e) {
-      debugPrint(e.toString());
-      return Left(ServerFailure());
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
     }
-    return Left(ServerFailure());
+    throw UnimplementedError();
   }
 }
