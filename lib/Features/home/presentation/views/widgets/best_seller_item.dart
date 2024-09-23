@@ -64,6 +64,8 @@ class BestSellerListViewItem extends StatelessWidget {
                       bookModel.volumeInfo?.authors?.first ??
                           'author not found',
                       style: Styles.textStyle14,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(
                       height: 3,
