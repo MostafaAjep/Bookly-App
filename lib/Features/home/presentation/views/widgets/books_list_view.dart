@@ -1,8 +1,10 @@
 import 'package:bokkly_app/Features/home/presentation/maneger/featured_books_cubit/featured_books_cubit.dart';
 import 'package:bokkly_app/Features/home/presentation/views/widgets/custom_book_item.dart';
+import 'package:bokkly_app/core/utils/app_router.dart';
 import 'package:bokkly_app/core/widgets/custom_error_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class BooksListView extends StatelessWidget {
   const BooksListView({super.key});
@@ -20,10 +22,16 @@ class BooksListView extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemCount: state.books.length,
               itemBuilder: (context, index) {
-                return CustomBookImage(
-                  imageUrl: state
-                          .books[index].volumeInfo?.imageLinks?.thumbnail ??
-                      'https://books.google.com/books/content?id=jKBQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+                return InkWell(
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouter.kBookDetailsView,
+                        extra: state.books[index]);
+                  },
+                  child: CustomBookImage(
+                    imageUrl: state
+                            .books[index].volumeInfo?.imageLinks?.thumbnail ??
+                        'https://books.google.com/books/content?id=jKBQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+                  ),
                 );
               },
             ),

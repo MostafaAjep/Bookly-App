@@ -1,27 +1,29 @@
+import 'package:bokkly_app/Features/home/data/models/book_model/book_model.dart';
 import 'package:bokkly_app/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class BooksAction extends StatelessWidget {
-  const BooksAction({super.key});
+  const BooksAction({super.key, required this.bookModel});
+  final BookModel bookModel;
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Row(
         children: [
           Expanded(
             child: CustomButton(
-              title: '19.99\$',
+              title: "${bookModel.volumeInfo?.pageCount}\$",
               backgroundColor: Colors.white,
               textColor: Colors.black,
-              border: BorderRadius.only(
+              border: const BorderRadius.only(
                 topLeft: Radius.circular(12),
                 bottomLeft: Radius.circular(12),
               ),
             ),
           ),
-          Expanded(
+          const Expanded(
             child: CustomButton(
               title: 'Free Preview',
               backgroundColor: Color.fromARGB(239, 239, 131, 98),
