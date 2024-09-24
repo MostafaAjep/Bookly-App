@@ -16,7 +16,8 @@ class BestSellerListViewItem extends StatelessWidget {
       padding: const EdgeInsets.only(left: 18, right: 18, bottom: 12),
       child: InkWell(
         onTap: () {
-          GoRouter.of(context).push(AppRouter.kBookDetailsView);
+          GoRouter.of(context)
+              .push(AppRouter.kBookDetailsView, extra: bookModel);
         },
         child: SizedBox(
           height: 120,

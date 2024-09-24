@@ -17,7 +17,7 @@ class BottomBooksSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        const SmallerBooksListView(),
+        SmallerBooksListView(),
       ],
     );
   }
